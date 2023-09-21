@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+<header>
+    <h1>Наши Сотрудники и Контакты</h1>
+</header>
+<div class="d-flex m-1">
+    <aside>
+        <nav>
+            <div>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#team">Наша Команда</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main>
+        <section id="about" itemscope itemtype="http://schema.org/Organization">
+            <h2>О нас</h2>
+            <p>Добро пожаловать в нашу уютную кондитерскую! Здесь мы создаем настоящие произведения искусства, превращая
+                простые ингредиенты в невероятно вкусные десерты. Наши мастера-кондитеры с любовью и творчеством готовят
+                торты, пирожные, эклеры и многое другое.</p>
+            <p>Мы верим, что вкус - это неотъемлемая часть нашей жизни, и поэтому мы уделяем особое внимание каждому
+                деталю в наших десертах. Мы используем только лучшие ингредиенты и секретные рецепты, чтобы порадовать
+                вас неповторимым вкусом и красотой наших изделий.</p>
+            <p>Ваше удовольствие - наш главный приоритет, поэтому мы всегда готовы предложить вам наши лучшие творения.
+                Независимо от того, нужен ли вам торт для особого события, пирожное для утреннего кофе или подарок для
+                близкого человека, мы всегда здесь, чтобы угодить вашему вкусу.</p>
+            <p>Посетите нас сегодня и насладитесь миром сладких радостей, который мы создаем для вас каждый день.</p>
+
+            <section id="team" itemscope itemtype="http://schema.org/Person">
+                <h2>Наша Команда</h2>
+
+                <article itemprop="employee" itemscope itemtype="http://schema.org/Person">
+                    <figure>
+                        <img src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iA8CLeVidvag/v1/-1x-1.jpg"
+                             alt="Фото Сотрудника 1" width="150" height="150">
+                        <figcaption itemprop="name">Иван Иванов</figcaption>
+                    </figure>
+                    <p>Должность: Пекарь</p>
+                    <p>Email: <a href="mailto:ivan@example.com" itemprop="email">ivan@example.com</a></p>
+                    <p>Телефон: <span itemprop="telephone">+123456789</span></p>
+                </article>
+
+                <article itemprop="employee" itemscope itemtype="http://schema.org/Person">
+                    <figure>
+                        <img src="https://assets.vogue.com/photos/62420fb9f8a525d9b8e447e1/master/w_1600%2Cc_limit/0G6A8529.jpg"
+                             alt="Фото Сотрудника 2" width="150" height="150">
+                        <figcaption itemprop="name">Елена Петрова</figcaption>
+                    </figure>
+                    <p>Должность: Кондитер</p>
+                    <p>Email: <a href="mailto:elena@example.com" itemprop="email">elena@example.com</a></p>
+                    <p>Телефон: <span itemprop="telephone">+987654321</span></p>
+                </article>
+            </section>
+            <section id="contact" itemscope itemtype="http://schema.org/Organization">
+                <h2>Контакты</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Отдел</th>
+                        <th>Телефон</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td itemprop="department">Общая информация</td>
+                        <td itemprop="telephone">+123456789</td>
+                        <td><a href="mailto:info@example.com" itemprop="email">info@example.com</a></td>
+                    </tr>
+                    <tr>
+                        <td itemprop="department">Заказы</td>
+                        <td itemprop="telephone">+987654321</td>
+                        <td><a href="mailto:orders@example.com" itemprop="email">orders@example.com</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+    </main>
+</div>
+
+{% endblock %}

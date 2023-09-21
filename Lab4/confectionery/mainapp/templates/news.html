@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="news">
+    <h2>Последние новости</h2>
+
+    {% for article in news %}
+    <article>
+        <h3>{{ article.title }}</h3>
+        {% if article.path %}
+        <img src="{{ article.path }}" alt="Изображение статьи">
+        {% endif %}
+        <p>{{ article.content|truncatewords:30 }}</p>
+        <p>Дата публикации: {{ article.created_at }}</p>
+        <a href="{% url 'article' article.id %}">Читать далее</a>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

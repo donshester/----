@@ -1,0 +1,13 @@
+Lab1/__pycache__/
+Lab1/venv/
+Lab2/task1/venv
+Lab2/task1/__pycache__
+Lab2/task2/venv
+.idea
+__pycache__
+user_files
+Lab3/dist/
+Lab3/build/
+Lab3/custom_json_serializer_1234.egg-info/
+Lab3/venv/
+Lab4/venv/

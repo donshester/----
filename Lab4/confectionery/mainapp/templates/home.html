@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<section>
+    <h2>Последние новости</h2>
+    <article>
+        <h3><strong>Пирожки: Искусство Пекаря</strong></h3>
+        <p>Пирожки - это вкусное и популярное блюдо во многих кухнях мира....</p>
+        <img src="https://testo-tlt.ru/upload/resize_cache/iblock/047/450_450_0/v1m9y48fnoe2soxnu55twvxn3421k9ty.png"
+             alt="Изображение статьи">
+        <a href="article/1">Читать далее</a>
+    </article>
+</section>
+
+<a href="https://wethebeststore.com/">
+    <p style="font-weight: bold; color: red; margin-bottom: 5px;">Реклама</p>
+    <img
+            srcset="
+                https://www.billboard.com/wp-content/uploads/2022/07/dj-khaled-2022-bbma-billboard-1548.jpg 1200w,
+                https://www.billboard.com/wp-content/uploads/2022/07/dj-khaled-2022-bbma-billboard-1548.jpg 800w,
+                https://www.billboard.com/wp-content/uploads/2022/07/dj-khaled-2022-bbma-billboard-1548.jpg 400w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33.3vw"
+            src="https://www.billboard.com/wp-content/uploads/2022/07/dj-khaled-2022-bbma-billboard-1548.jpg"
+            alt="Рекламный баннер"
+    >
+</a>
+
+<section id="audio">
+        <h2>Эмоции наших клиентов</h2>
+        <audio controls>
+            <source src="{% static 'mainapp/audio/good.mp3' %}" type="audio/mpeg">
+            Ваш браузер не поддерживает аудио элемент.
+        </audio>
+</section>
+
+<section id="audio">
+    <h2>Наш создатель</h2>
+    <video controls>
+        <source src="{% static 'mainapp/video/video.mp4' %}" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+</section>
+
+<section>
+    <h2>Наши партнеры</h2>
+    <ul>
+        <li><a href="https://www.djkhaledofficial.com/"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/2/24/DJ_KHALED_Press_exclusive_-1.jpg"
+                alt="DJ Khaled's Groove Shop"></a></li>
+        <li><a href="https://www.etsy.com/market/dj_khaled_shirt"><img
+                src="https://i.guim.co.uk/img/media/7f840f74cab188353ed46bb9b9b6807c5343c7f7/0_38_1821_1093/master/1821.png?width=465&dpr=1&s=none"
+                alt="Major Key Music Market"></a></li>
+        <li>
+            <a href="https://www.amazon.com/Khaleds-RobloxSS-Tshirt-Vintage-Shirts/dp/B0CG5ZTQC4/ref=sr_1_5?keywords=dj+khaled+shirt&qid=1694681201&sr=8-5"><img
+                    src="https://w0.peakpx.com/wallpaper/1/758/HD-wallpaper-dj-khaled-american-dj-portrait-hoot-blue-jacket-khaled-mohamed-khaled.jpg"
+                    alt="Khaled's Hit Hub"></a></li>
+    </ul>
+</section>
+{% endblock %}

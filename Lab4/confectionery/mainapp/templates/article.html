@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header>
+        <h1>Последние новости</h1>
+    </header>
+
+    <section id="news">
+        <article>
+            <h2>{{ article.title }}</h2>
+            <img src="{{ article.path }}" alt="Изображение {{ article.title }}">
+            <p>{{ article.content }}</p>
+        </article>
+    </section>
+{% endblock %}

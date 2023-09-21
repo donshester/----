@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+    <meta name="VLAD">
+  <title>My Confectionery</title>
+    {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<body>
+<header>
+    <nav>
+      <a href="{% url 'main_page' %}">
+          <img src="https://cdn.worldvectorlogo.com/logos/candy.svg" alt="Логотип" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+      </a>
+      <ul>
+          <li><a href="{% url 'product_list' %}">Products</a></li>
+          {% if user.is_authenticated and user.is_superuser %}
+              <li><a href="{% url 'product_create' %}">Create Product</a></li>
+          {% endif %}
+          {% if user.is_authenticated and user.is_staff %}
+              <li><a href="{% url 'statistics' %}">View Statistics</a></li>
+              <li><a href="{% url 'latest_orders' %}">Latest Orders</a></li>
+          {% endif %}
+          {% if user.is_authenticated %}
+              {% if not user.is_superuser  %}
+                  <li><a href="{% url 'my_orders' %}">My Orders</a></li>
+                  <li><a href="{% url 'cart' %}">My Cart</a></li>
+              {% endif %}
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+              <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+      </ul>
+      <ul>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'news' %}">News</a></li>
+          <li><a href="{% url 'contacts' %}">Contacts</a></li>
+          <li><a href="{% url 'vocabulary' %}">Vocabulary</a></li>
+          <li><a href="{% url 'main_page' %}">Main</a></li>
+          <li><a href="{% url 'promo_page' %}">Promo</a></li>
+          <li><a href="{% url 'feedback' %}">Feedback</a></li>
+          <li><a href="{% url 'vacancies' %}">Vacancies</a></li>
+      </ul>
+    </nav>
+    </header>
+  <div class="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <footer>
+    <p>&copy; 2023 Наша кондитерская</p>
+  </footer>
+</body>
+</html>

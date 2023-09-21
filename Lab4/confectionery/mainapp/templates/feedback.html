@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+<a href="#feedback" class="btn btn-secondary m-3">Отзывы</a>
+<a href="#leave-feedback" class="btn btn-secondary m-3">Оставить отзыв</a>
+{% endblock %}
+
+{% block content %}
+
+<article id="feedback">
+    <h1>Отзывы</h1>
+    <div class="container mt-4">
+        <div class="card">
+            {% for review in reviews %}
+            <div class="card-header">
+                <h3 class="card-title">{{ review.reviewer }}</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Дата: {{ review.date }}</p>
+                <p class="card-text">Время: {{ review.time }}</p>
+                <p class="card-text">Рейтинг: {{ review.rating }}</p>
+                <p class="card-text">Комментарий:</p>
+                <p class="card-text">{{ review.review }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</article>
+
+{% endblock %}

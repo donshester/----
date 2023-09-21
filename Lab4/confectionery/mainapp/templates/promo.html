@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+<a href="#active-promo" class="btn btn-secondary m-3">Active promo</a>
+<a href="#archive-promo" class="btn btn-secondary m-3">Archive promo</a>
+{% endblock %}
+
+{% block content %}
+
+<article id="active-promo">
+    <h2>Активные промокоды</h2>
+    <ul>
+        {% for promo_code in active_promo_codes %}
+        <li>
+            <strong>{{ promo_code.promo }}</strong> - {{ promo_code.description }}
+        </li>
+        {% empty %}
+        <li>Currently, there are no active promo codes.</li>
+        {% endfor %}
+    </ul>
+</article>
+
+<article id="archive-promo">
+    <h2>Архив промокодов</h2>
+    <ul>
+        {% for promo_code in archived_promo_codes %}
+        <li>
+            <strong>{{ promo_code.promo }}</strong> - {{ promo_code.description }}
+        </li>
+        {% empty %}
+        <li>The promo code archive is empty.</li>
+        {% endfor %}
+    </ul>
+</article>
+{% endblock %}
