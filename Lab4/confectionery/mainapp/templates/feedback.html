@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
-
-{% block sidebar %}
-<a href="#feedback" class="btn btn-secondary m-3">Отзывы</a>
-<a href="#leave-feedback" class="btn btn-secondary m-3">Оставить отзыв</a>
-{% endblock %}
-
 {% block content %}
+{% load static %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/feedback.css' %}">
 <article id="feedback">
     <h1>Отзывы</h1>
     <div class="container mt-4">

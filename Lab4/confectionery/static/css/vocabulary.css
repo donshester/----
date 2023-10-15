@@ -1,0 +1,29 @@
+#faq article {
+    margin-bottom: 20px;
+}
+
+details {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+summary {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+p {
+    margin-top: 10px;
+}
+
+details[open] {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+details:hover {
+    background-color: #e0e0e0;
+}

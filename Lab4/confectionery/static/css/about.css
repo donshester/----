@@ -1,0 +1,202 @@
+.logo {
+    transform: scale(0.9);
+}
+
+#certificate {
+    background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 0, 0.5),
+    rgba(0, 0, 255, 0.5)
+  ), url("https://assets.stickpng.com/images/580b585b2edbce24c47b2d21.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 30px solid transparent;
+    border-image: url('https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice/border-diamonds.png') round;
+    border-width: 30px;
+    border-image-slice: 30;
+    -webkit-border-image-slice: 30;
+    -moz-border-image-slice: 30;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    z-index: 2;
+
+}
+
+#certificate h2 {
+    font-size: 24px;
+    color: #fff;
+}
+
+#certificate p {
+    font-size: 16px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+ъ
+iframe {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+p {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#history-list {
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+.address {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#history-list {
+    list-style-type: square;
+}
+
+#history-list li:first-child {
+    font-weight: bold;
+}
+
+#history-list li:last-child {
+    font-style: italic;
+}
+
+#history-list li:nth-child(2) {
+    color: #FF0000;
+}
+a.special-link:link {
+    color: blue;
+    text-decoration: none;
+}
+
+a.special-link:visited {
+    color: purple;
+    text-decoration: none;
+}
+
+a.special-link:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+a.special-link:active {
+    color: green;
+    text-decoration: underline;
+}
+
+a.special-link:focus {
+    outline: 2px solid #ff9900;
+}
+p::first-letter {
+    font-size: 24px;
+    color: #FF0000;
+}
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #000;
+}
+
+td:empty {
+    background-color: #f2f2f2;
+}
+caption {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+}
+tr:nth-child(odd) {
+    background-color: #f515f5;
+}
+
+td:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#privacy-policy {
+    background-color: #f7e6d5;
+    padding: 20px;
+    color: #5c2b19;
+    font-family: 'Pixelify Sans', serif;
+}
+
+#privacy-policy h2 {
+    color: #e84c00;
+}
+
+#privacy-policy h3 {
+    color: #ff7f50;
+}
+
+#privacy-policy p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+#privacy-policy small {
+    font-size: 14px;
+    color: #999;
+}
+
+#privacy-policy sup {
+    font-size: 12px;
+    color: #e84c00;
+}
+
+#privacy-policy a {
+    color: #e84c00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#privacy-policy a:hover {
+    text-decoration: underline;
+}
+
+blockquote[lang="en"]::before {
+    content: "“";
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+blockquote[lang="en"]::after {
+    content: "”";
+    font-size: 1.2em;
+    margin-left: 5px;
+}
+
+blockquote[lang="ru"]::before {
+    content: "«";
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+blockquote[lang="ru"]::after {
+    content: "»";
+    font-size: 1.2em;
+    margin-left: 5px;
+}
+.important::before {
+    font-size:20px;
+    font-weight: bold;
+    content: "Важно: ";
+}

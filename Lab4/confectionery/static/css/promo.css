@@ -1,0 +1,36 @@
+.unicode-list-1 {
+    list-style-type: '\2020 ';
+    padding-left: 1em;
+}
+
+.unicode-list-2 {
+    list-style-type: '\25AA';
+    padding-left: 1em;
+}
+
+#active-promo,
+#archive-promo {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 1;
+    color: #331;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+::selection {
+    background-color: #ffff00;
+}

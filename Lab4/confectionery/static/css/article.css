@@ -1,0 +1,28 @@
+#news {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+article {
+    flex: 1;
+    min-width: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+article h2 {
+    font-size: 1.5rem;
+}
+
+article img {
+    max-width: 100%;
+    height: auto;
+}
+
+article p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

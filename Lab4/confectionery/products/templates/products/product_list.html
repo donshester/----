@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
   <h1>Product List</h1>
 
   <form method="get" action="{% url 'product_list' %}">
@@ -39,11 +42,18 @@
     <button type="submit">Filter</button>
   </form>
 
-  <ul>
+  <ul class="product-grid">
     {% for product in products %}
-      <li><a href="{% url 'product_detail' product.id %}">{{ product.name }} - {{ product.price }}</a></li>
+      <li class="product-card">
+        <a href="{% url 'product_detail' product.id %}">
+          <div class="product-details">
+            <h2>{{ product.name }}</h2>
+            <p>Price: ${{ product.price }}</p>
+          </div>
+        </a>
+      </li>
     {% empty %}
-      <li>No products available.</li>
+      <li class="no-products">No products available.</li>
     {% endfor %}
   </ul>
 {% endblock %}

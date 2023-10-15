@@ -1,0 +1,46 @@
+input:enabled {
+    background-color: #f0f0f0;
+}
+.vacancy {
+    float: left;
+    width: 50%;
+    margin-right: 10px;
+    clear: none;
+}
+
+.vacancy:nth-child(2n) {
+    clear: both;
+}
+
+.vacancy p {
+   font-variant: small-caps;
+   word-spacing: 2px;
+   letter-spacing: -1px;
+}
+input:required {
+    border: 2px solid #e84c00;
+}
+
+input:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+input[type="number"] {
+    border: 2px solid #e84c00;
+}
+
+input[type="checkbox"]:checked {
+    border: 2px solid green;
+}
+
+input[type="radio"]:checked {
+    border: 2px solid blue;
+}
+input[type="number"]:valid {
+    border: 2px solid green;
+}
+
+input[type="number"]:invalid {
+    border: 2px solid red;
+}

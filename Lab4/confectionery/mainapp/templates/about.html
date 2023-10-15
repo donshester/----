@@ -1,33 +1,37 @@
     {% extends "base.html" %}
 
     {% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pixelify+Sans">
+
       <section id="about">
-        <h2>О нашей кондитерской</h2>
-        <p>Мы - небольшая кондитерская, вдохновленная любовью к сладостям и желанием порадовать вас нашими уникальными десертами.</p>
+    <h2>О нашей кондитерской</h2>
+    <p>Мы - небольшая кондитерская, вдохновленная любовью к сладостям и желанием порадовать вас нашими уникальными десертами.</p>
 
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/4MX-nvm6BlY" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/4MX-nvm6BlY" frameborder="0" allowfullscreen></iframe>
 
-        <img src="https://images-platform.99static.com//R5kir5vfeXVWOGeB43Kji0eYPVU=/357x360:1439x1442/fit-in/500x500/99designs-contests-attachments/92/92469/attachment_92469690" alt="Логотип нашей кондитерской">
+    <img class="logo" src="https://images-platform.99static.com//R5kir5vfeXVWOGeB43Kji0eYPVU=/357x360:1439x1442/fit-in/500x500/99designs-contests-attachments/92/92469/attachment_92469690" alt="Логотип нашей кондитерской">
 
-        <h3>История нашей кондитерской по годам</h3>
-        <ul>
-            <li>Год 1: Мы открылись и представили наш первый десерт - "Сладкий старт".</li>
-            <li>Год 2: Завоевали награду "Лучший вкус" на международной кондитерской выставке.</li>
-        </ul>
+    <h3>История нашей кондитерской по годам</h3>
+    <ul id="history-list">
+        <li>Год 1: Мы открылись и представили наш первый десерт - "Сладкий старт".</li>
+        <li>Год 2: Завоевали награду "Лучший вкус" на международной кондитерской выставке.</li>
+    </ul>
 
-        <h3>Наши реквизиты</h3>
-        <address>
-            Название компании: Sweet Delights<br>
-            Адрес: ул. Кондитерская, г. Сладков<br>
-            Телефон: +123456789<br>
-            Email: info@sweetdelights.com
-        </address>
+    <h3>Наши реквизиты</h3>
+    <address class="address">
+        Название компании: Sweet Delights<br>
+        Адрес: ул. Кондитерская, г. Сладков<br>
+        Телефон: +123456789<br>
+        Email: info@sweetdelights.com
+    </address>
 
-
+    <div id="certificate">
         <h3>Сертификат качества</h3>
         <p>Мы гордимся нашим сертификатом качества, подтверждающим высокое качество наших продуктов и заботу о вашем вкусе.</p>
-
         <p><strong>Наша миссия - создавать ваши сладкие моменты.</strong></p>
+    </div>
 
         <pre>
 
@@ -41,9 +45,13 @@
 
         <dfn>Кондитерская</dfn>: Место, где рождаются сладкие шедевры.
 
-        <blockquote>
-            "Десерт - это не просто еда, это искусство создавать удовольствие." - Sweet Delights
+        <blockquote lang="en">
+            Десерт - это не просто еда, это искусство создавать удовольствие. - Sweet Delights
         </blockquote>
+        <blockquote lang="ru">
+            Dessert is not just food, it is an art that creates pleasure. - Sweet Delights
+        </blockquote>
+
 
         <time datetime="2023-09-14T10:00:00Z">14 сентября 2023, 10:00 утра</time>
 
@@ -52,7 +60,7 @@
         My booty stank<br>
         How about you?</p>
 
-        <a href="/products">Посмотреть наши продукты</a><br>
+        <a href="/products" class="special-link">Посмотреть наши продукты</a>
         <a href="/download/menu.pdf" download>Скачать меню (PDF)</a>
 
         <h3><a href="/contacts">Свяжитесь с нами</a></h3>
@@ -92,7 +100,7 @@
 
     <section id="privacy-policy">
         <h2>Политика конфиденциальности</h2>
-        <p>Мы ценим вашу <i>конфиденциальность</i> и делаем все возможное для защиты ваших данных. Ниже вы найдете информацию о том, как мы собираем, используем и защищаем ваши <small>личные данные</small>.</p>
+        <p class="important">Мы ценим вашу <i>конфиденциальность</i> и делаем все возможное для защиты ваших данных. Ниже вы найдете информацию о том, как мы собираем, используем и защищаем ваши <small>личные данные</small>.</p>
 
         <h3>Сбор и использование данных</h3>
         <p>Мы собираем только необходимую информацию для обработки ваших заказов и предоставления вам наших услуг. Мы не передаем ваши данные третьим лицам без вашего <sup>согласия</sup>.</p>

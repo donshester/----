@@ -6,10 +6,11 @@
 {% endblock %}
 
 {% block content %}
-
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/promo.css' %}">
 <article id="active-promo">
     <h2>Активные промокоды</h2>
-    <ul>
+    <ul class="unicode-list-1">
         {% for promo_code in active_promo_codes %}
         <li>
             <strong>{{ promo_code.promo }}</strong> - {{ promo_code.description }}
@@ -22,7 +23,7 @@
 
 <article id="archive-promo">
     <h2>Архив промокодов</h2>
-    <ul>
+    <ul class="unicode-list-2">
         {% for promo_code in archived_promo_codes %}
         <li>
             <strong>{{ promo_code.promo }}</strong> - {{ promo_code.description }}
@@ -32,4 +33,5 @@
         {% endfor %}
     </ul>
 </article>
+
 {% endblock %}

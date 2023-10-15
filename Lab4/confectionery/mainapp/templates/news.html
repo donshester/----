@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/news.css' %}">
 <section id="news">
     <h2>Последние новости</h2>
 
@@ -10,10 +12,53 @@
         {% if article.path %}
         <img src="{{ article.path }}" alt="Изображение статьи">
         {% endif %}
-        <p>{{ article.content|truncatewords:30 }}</p>
+        <div class="content-preview">
+            <p>{{ article.content|truncatewords:30 }}</p>
+        </div>
+        <div class="content-full">
+            {{ article.content }}
+        </div>
         <p>Дата публикации: {{ article.created_at }}</p>
-        <a href="{% url 'article' article.id %}">Читать далее</a>
+        <a class="read-more" href="#">Читать далее</a>
+        <a class="hide-content" href="#">Скрыть</a>
     </article>
     {% endfor %}
 </section>
+
+
+<script>
+
+    const readMoreButtons = document.querySelectorAll('.read-more');
+    const hideContentButtons = document.querySelectorAll('.hide-content');
+
+    readMoreButtons.forEach((readMoreButton, index) => {
+        readMoreButton.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const contentPreview = document.querySelectorAll('.content-preview')[index];
+            const contentFull = document.querySelectorAll('.content-full')[index];
+            const hideContentButton = document.querySelectorAll('.hide-content')[index];
+
+            contentPreview.style.display = 'none';
+            contentFull.style.display = 'block';
+            hideContentButton.style.display = 'inline';
+            readMoreButton.style.display = 'none';
+        });
+    });
+
+    hideContentButtons.forEach((hideContentButton, index) => {
+        hideContentButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const contentPreview = document.querySelectorAll('.content-preview')[index];
+            const contentFull = document.querySelectorAll('.content-full')[index];
+            const readMoreButton = document.querySelectorAll('.read-more')[index];
+
+            contentFull.style.display = 'none';
+            contentPreview.style.display = 'block';
+            readMoreButton.style.display = 'inline';
+            hideContentButton.style.display = 'none';
+        });
+    });
+
+</script>
 {% endblock %}

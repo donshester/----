@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/vacancies.css' %}">
+
 <section id="vacancies">
     <h2>Вакансии</h2>
 
-    <article>
+    <article class="vacancy">
         <h3>Вакансия 1: Кондитер</h3>
         <p>Мы ищем опытного кондитера, способного создавать невероятные десерты и торты. От вас требуется знание
             различных рецептов и умение работать с мастикой.</p>
@@ -13,7 +17,7 @@
         <a href="#apply-confectioner">Подать заявку</a>
     </article>
 
-    <article>
+    <article class="vacancy">
         <h3>Вакансия 2: Пекарь</h3>
         <p>Мы ищем пекаря, который готов создавать вкусные хлебобулочные изделия и пирожные. Опыт работы с тестом и
             выпечкой обязателен.</p>
@@ -25,17 +29,27 @@
     <section id="apply-confectioner">
         <h3>Подать заявку на вакансию "Кондитер"</h3>
         <form>
-            <label for="name">Имя:</label>
-            <input type="text" id="name" name="name" required>
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
 
-            <label for="resume">Резюме (PDF):</label>
-            <input type="file" id="resume" name="resume" accept=".pdf" required>
+    <label for="resume">Резюме (PDF):</label>
+    <input type="file" id="resume" name="resume" accept=".pdf" required>
 
-            <button type="submit">Отправить</button>
-        </form>
+    <label for="checkbox">Включенный флажок:</label>
+    <input type="checkbox" id="checkbox" name="checkbox" checked>
+
+    <label for="radio">Переключатель:</label>
+    <input type="radio" id="radio" name="radio" checked>
+
+    <label for="valueOutOfRange">Значение вне диапазона:</label>
+    <input type="number" id="valueOutOfRange" name="valueOutOfRange" min="10" max="50" value="5">
+
+    <button type="submit">Отправить</button>
+</form>
+
     </section>
 
     <section id="apply-baker">
