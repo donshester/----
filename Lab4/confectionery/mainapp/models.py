@@ -15,6 +15,7 @@ class Review(models.Model):
 
 class Promo(models.Model):
     promo = models.CharField(max_length=30, blank=False)
+    percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     archived = models.BooleanField(default=False)
     description = models.CharField(default='', max_length=255, blank=False)
 

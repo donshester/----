@@ -43,6 +43,9 @@
             <li><a href="{% url 'promo_page' %}">Promo</a></li>
             <li><a href="{% url 'feedback' %}">Feedback</a></li>
             <li><a href="{% url 'vacancies' %}">Vacancies</a></li>
+            <li><a href="{% url 'js' %}">JS Examples</a></li>
+            <li><a href="{% url 'classes' %}">Classes Examples</a></li>
+            <li><a href="{% url 'dates' %}">Dates Examples</a></li>
         </ul>
     </nav>
 </header>
@@ -53,7 +56,55 @@
 </div>
 
 <footer>
+    <h1>Countdown Timer</h1>
+    <p id="countdown"></p>
     <p>&copy; 2023 Наша кондитерская</p>
 </footer>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const startTime = localStorage.getItem("countdownStartTime");
+
+      if (startTime) {
+        const currentTime = new Date().getTime();
+        const elapsed = currentTime - parseInt(startTime, 10);
+
+        const duration = 60 * 60 * 1000;
+        const remaining = duration - elapsed;
+
+        if (remaining > 0) {
+          startCountdown(remaining);
+        }
+      } else {
+        startCountdown(60 * 60 * 1000);
+      }
+    });
+
+    function startCountdown(duration) {
+      const countdownElement = document.getElementById("countdown");
+      const startTimestamp = new Date().getTime();
+      const savedStartTime = localStorage.getItem("countdownStartTime");
+
+      if (!savedStartTime || (startTimestamp - savedStartTime) >= duration) {
+        localStorage.setItem("countdownStartTime", startTimestamp.toString());
+      }
+
+      const timer = setInterval(function () {
+        const currentTime = new Date().getTime();
+        const elapsedTime = currentTime - startTimestamp;
+        const remainingTime = duration - elapsedTime;
+
+        if (remainingTime <= 0) {
+          clearInterval(timer);
+          countdownElement.textContent = "Countdown expired!";
+        } else {
+          const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+          countdownElement.textContent = `${minutes}m ${seconds}s`;
+        }
+      }, 1000);
+    }
+  </script>
+
 </html>

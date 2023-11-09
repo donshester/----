@@ -1,36 +1,73 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Cart</h1>
-  <form method="post">
+<h1>Cart</h1>
+<form method="post">
     {% csrf_token %}
-
-
     {% if order_item_forms %}
     {{ order_form.as_p }}
-      <table>
+    <table>
         <thead>
-          <tr>
+        <tr>
             <th>Product</th>
             <th>Quantity</th>
-            <th>Actions</th>
-          </tr>
+        </tr>
         </thead>
         <tbody>
-          {% for form in order_item_forms %}
-            <tr>
-              <td>{{ form.product }}</td>
-              <td>{{ form.quantity }}</td>
-              <td>
-                     <button type="submit" name="delete" value="{{ form.product.value }}">Delete</button>
-              </td>
-            </tr>
-          {% endfor %}
+        {% for form in order_item_forms %}
+        <tr>
+            <td>{{ form.product }}</td>
+            <td>{{ form.quantity }}</td>
+            <td>
+                <button type="submit" name="delete" value="{{ form.product.value }}">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
         </tbody>
-      </table>
-      <button type="submit">Make Order</button>
+    </table>
+    <p id="total-cart-price">Total Cart Price: ${{ total_cart_price }}</p>
+    <input type="text" id="promo-code-input" placeholder="Enter promo">
+    <button id="apply-promo-code">Apply</button>
+    <button type="submit">Make Order</button>
     {% else %}
-      <p>Your cart is empty.</p>
+    <p>Your cart is empty.</p>
     {% endif %}
-  </form>
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const promoCodeInput = document.getElementById("promo-code-input");
+    const applyPromoButton = document.getElementById("apply-promo-code");
+    let price = 0;
+    const totalCartPrice = document.getElementById("total-cart-price");
+     if (totalCartPrice) {
+        const text = totalCartPrice.textContent;
+         price = parseFloat(text.replace("Total Cart Price: $", ""));
+        if (!isNaN(price)) {
+            console.log(price);
+        }
+    }
+    applyPromoButton.addEventListener("click", function () {
+        event.preventDefault();
+        const promoCode = promoCodeInput.value;
+
+        fetch(`/check_promo/?promo_code=${promoCode}`)
+           .then((response) => response.json())
+            .then((data) => {
+                if (data.valid) {
+                    const discount = (data.percentage / 100) * parseFloat(price);
+                    const newTotalPrice = parseFloat(price) - discount;
+                    totalCartPrice.textContent = `Total Cart Price: $${newTotalPrice.toFixed(2)}`;
+                    promoCodeInput.disabled = true;
+                    applyPromoButton.disabled = true;
+                } else {
+                    alert("Промокод недействителен или архивирован.");
+                }
+            })
+            .catch((error) => {
+                console.error("Произошла ошибка при проверке промокода:", error);
+            });
+    });
+});
+
+</script>
 {% endblock %}

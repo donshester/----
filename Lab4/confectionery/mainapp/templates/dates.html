@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Seasonal Dates</title>
+</head>
+<body>
+    <h1>Seasonal Dates</h1>
+    <form id="date-form">
+        <label for="date-input">Enter Date:</label>
+        <input type="text" id="date-input" placeholder="Month Day">
+        <button type="button" id="add-date">Add Date</button>
+        <button type="submit" id="process-dates">Process Dates</button>
+    </form>
+    <div>
+        <h2>Summer Dates:</h2>
+        <ul id="summer-dates"></ul>
+    </div>
+    <div>
+        <h2>Winter Dates:</h2>
+        <ul id="winter-dates"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<script>document.addEventListener("DOMContentLoaded", () => {
+    const dateForm = document.getElementById("date-form");
+    const dateInput = document.getElementById("date-input");
+    const addDateButton = document.getElementById("add-date");
+    const summerDatesList = document.getElementById("summer-dates");
+    const winterDatesList = document.getElementById("winter-dates");
+
+    const summerMonths = ["June", "July", "August"];
+    const winterMonths = ["December", "January", "February"];
+
+    let dates = {
+        summer: [],
+        winter: [],
+    };
+
+    addDateButton.addEventListener("click", () => {
+        const date = dateInput.value.trim();
+        if (date === "") return;
+
+        const [month, day] = date.split(" ");
+
+        if (summerMonths.includes(month)) {
+            dates.summer.push(`${month} ${day}`);
+        } else if (winterMonths.includes(month)) {
+            dates.winter.push(`${month} ${day}`);
+        } else {
+            alert("Not a summer or winter date.");
+        }
+
+        dateInput.value = "";
+    });
+
+    dateForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        summerDatesList.innerHTML = "";
+        winterDatesList.innerHTML = "";
+
+        dates.summer.forEach((date) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = date;
+            summerDatesList.appendChild(listItem);
+        });
+
+        dates.winter.forEach((date) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = date;
+            winterDatesList.appendChild(listItem);
+        });
+    });
+});
+</script>
+</html>

@@ -103,3 +103,36 @@ table th, table td {
     word-wrap: break-word; А
     hyphens: none;
 }
+img {
+  width: 100%;
+  display: block;
+}
+.parallax-card {
+    perspective: 1000px;
+    transition: transform 0.3s;
+    transform: rotateY(10deg);
+}
+
+.parallax-card:hover {
+    transform: rotateY(0deg);
+}
+
+.inner-content {
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transform: translateX(0);
+    transition: transform 0.3s;
+}
+
+.parallax-card:hover .inner-content {
+    transform: translateX(10px);
+}
+
+.move-text {
+    transition: transform 0.3s;
+}
+
+.parallax-card:hover .move-text {
+    transform: translateX(-20px);  /* Adjust the translation value as needed */
+}

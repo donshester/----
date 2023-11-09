@@ -7,6 +7,8 @@ from orders.forms import OrderItemForm, OrderForm
 from products.models import Product
 from orders.models import OrderItem
 from customers.models import Customer
+
+
 class CartView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def test_func(self):
@@ -15,16 +17,21 @@ class CartView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request):
         cart = request.session.get('cart', {})
         order_item_forms = []
+        total_cart_price = 0  # Инициализировать общую стоимость корзины
+
         for product_id, quantity in cart.items():
             product = Product.objects.get(id=product_id)
             form = OrderItemForm(initial={'product': product, 'quantity': quantity})
             order_item_forms.append(form)
+            total_cart_price += product.price * quantity  # Вычислить стоимость данного продукта и добавить к общей стоимости корзины
+
         for form in order_item_forms:
             form.fields['product'].widget.attrs['disabled'] = True
             form.fields['quantity'].widget.attrs['disabled'] = True
         order_form = OrderForm()
 
-        return render(request, 'cart.html', {'order_item_forms': order_item_forms, 'order_form': order_form})
+        return render(request, 'cart.html', {'order_item_forms': order_item_forms, 'order_form': order_form,
+                                             'total_cart_price': total_cart_price})
 
     def post(self, request):
         cart = request.session.get('cart', {})
@@ -38,25 +45,25 @@ class CartView(LoginRequiredMixin, UserPassesTestMixin, View):
                 del cart[product_id]
             request.session['cart'] = cart
             return redirect('cart')
+        if 'make_order' in request.POST:
+            if order_form.is_valid():
+                order = order_form.save(commit=False)
+                customer = Customer.objects.get(username=request.user)
+                order.customer = customer
+                order.sale_date = date.today()
+                order.save()
 
-        if order_form.is_valid():
-            order = order_form.save(commit=False)
-            customer = Customer.objects.get(username=request.user)
-            order.customer = customer
-            order.sale_date = date.today()
-            order.save()
+                for product_id, quantity in cart.items():
+                    product = Product.objects.get(id=product_id)
+                    order_item = OrderItem(order=order, product=product, quantity=quantity)
+                    order_item.price = product.price * quantity
+                    order_item.save()
 
-            for product_id, quantity in cart.items():
-                product = Product.objects.get(id=product_id)
-                order_item = OrderItem(order=order, product=product, quantity=quantity)
-                order_item.price = product.price * quantity
-                order_item.save()
+                    product.quantity -= quantity
+                    product.save()
 
-                product.quantity -= quantity
-                product.save()
-
-            del request.session['cart']
-            return redirect('order_detail', order_id=order.pk)
+                del request.session['cart']
+                return redirect('order_detail', order_id=order.pk)
 
         for product_id, quantity in cart.items():
             product = Product.objects.get(id=product_id)
@@ -66,4 +73,3 @@ class CartView(LoginRequiredMixin, UserPassesTestMixin, View):
         request.session['cart'] = cart
 
         return render(request, 'cart.html', {'order_item_forms': order_item_forms, 'order_form': order_form})
-

@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 
 {% block sidebar %}
-<a href="#active-promo" class="btn btn-secondary m-3">Active promo</a>
-<a href="#archive-promo" class="btn btn-secondary m-3">Archive promo</a>
+<a class="btn btn-secondary m-3" href="#active-promo">Active promo</a>
+<a class="btn btn-secondary m-3" href="#archive-promo">Archive promo</a>
 {% endblock %}
 
 {% block content %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/promo.css' %}">
+{% load static %}
+<link href="{% static 'css/promo.css' %}" rel="stylesheet" type="text/css">
+<div class="parallax__container">
+    <img alt="parallax" src="../../static/assets/bg-1.jpg"/>
+    <img alt="parallax" id="bg-2" src="../../static/assets/bg-2.png"/>
+    <img alt="Donut" id="donut" src="../../static/assets/bg4.png"/>
+    <img alt="parallax" id="bg-3" src="../../static/assets/bg-3.png"/>
+    <div id="god">GOD DID</div>
+</div>
+
+
 <article id="active-promo">
     <h2>Активные промокоды</h2>
     <ul class="unicode-list-1">
@@ -33,5 +42,33 @@
         {% endfor %}
     </ul>
 </article>
+<script>
+    var bg_2 = document.getElementById("bg-2");
+    var bg_3 = document.getElementById("bg-3");
+    document.addEventListener("scroll", (event) => {
+        var positionY = window.scrollY;
 
+        bg_2.style.top = `-${positionY * 0.5}px`;
+        bg_3.style.top = `-${positionY}px`;
+        bg_3.style.scale = 1 + positionY * 0.001;
+    });
+
+    var donut = document.getElementById("donut");
+
+    document.addEventListener("scroll", (event) => {
+        var positionY = window.scrollY;
+
+        donut.style.transform = `rotate(${positionY}deg)`;
+
+        var newSize = 100 + positionY * 0.5;
+        donut.style.width = `${newSize}px`;
+        donut.style.height = `${newSize}px`;
+    });
+    var godDid = document.getElementById('god');
+
+    document.addEventListener("scroll", (event) => {
+        var positionY = window.scrollY;
+        godDid.style.opacity = positionY * 0.005;
+    });
+</script>
 {% endblock %}

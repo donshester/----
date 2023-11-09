@@ -3,6 +3,8 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
+<script src="{% static 'js/parallax.js' %}"></script>
+
 <body>
 <header>
     <h1>Наши Сотрудники и Контакты</h1>
@@ -23,7 +25,8 @@
     <main>
         <section id="about" itemscope itemtype="http://schema.org/Organization">
             <h2>О нас</h2>
-            <p class="wrap">Добро пожаловать в нашу уютную кондитерскую! Здесь мы создаем настоящие произведения искусства, превращая
+            <p class="wrap">Добро пожаловать в нашу уютную кондитерскую! Здесь мы создаем настоящие произведения
+                искусства, превращая
                 простые ингредиенты в невероятно вкусные десерты. Наши мастера-кондитеры с любовью и творчеством готовят
                 торты, пирожные, эклеры и многое другое.</p>
             <p>Мы верим, что вкус - это неотъемлемая часть нашей жизни, и поэтому мы уделяем особое внимание каждому
@@ -34,29 +37,33 @@
                 близкого человека, мы всегда здесь, чтобы угодить вашему вкусу.</p>
             <p>Посетите нас сегодня и насладитесь миром сладких радостей, который мы создаем для вас каждый день.</p>
 
-           <section id="team" itemscope itemtype="http://schema.org/Person">
+            <section id="team" itemscope itemtype="http://schema.org/Person">
                 <h2>Наша Команда</h2>
                 <div class="team-members">
-                    <article itemprop="employee" itemscope itemtype="http://schema.org/Person">
+                    <article itemprop="employee" itemscope itemtype="http://schema.org/Person" class="parallax-card">
                         <figure>
                             <img src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iA8CLeVidvag/v1/-1x-1.jpg"
-                                alt="Фото Сотрудника 1" width="150" height="150">
+                                 alt="Фото Сотрудника 1" width="150" height="150">
                             <figcaption itemprop="name">Иван Иванов</figcaption>
                         </figure>
-                        <p>Должность: Пекарь</p>
-                        <p>Email: <a href="mailto:ivan@example.com" itemprop="email">ivan@example.com</a></p>
-                        <p>Телефон: <span itemprop="telephone">+123456789</span></p>
+                        <div class="inner-content">
+                            <p class="parallax-text">Должность: Пекарь</p>
+                            <p>Email: <a href="mailto:ivan@example.com" itemprop="email">ivan@example.com</a></p>
+                            <p>Телефон: <span itemprop="telephone">+123456789</span></p>
+                        </div>
                     </article>
 
-                    <article itemprop="employee" itemscope itemtype="http://schema.org/Person">
+                   <article itemprop="employee" itemscope itemtype="http://schema.org/Person" class="parallax-card parallax-text">
                         <figure>
                             <img src="https://assets.vogue.com/photos/62420fb9f8a525d9b8e447e1/master/w_1600%2Cc_limit/0G6A8529.jpg"
-                                alt="Фото Сотрудника 2" width="150" height="150">
+                                 alt="Фото Сотрудника 2" width="150" height="150">
                             <figcaption itemprop="name">Елена Петрова</figcaption>
                         </figure>
-                        <p>Должность: Кондитер</p>
-                        <p>Email: <a href="mailto:elena@example.com" itemprop="email">elena@example.com</a></p>
-                        <p>Телефон: <span itemprop="telephone">+987654321</span></p>
+                        <div class="inner-content">
+                            <p>Должность: Кондитер</p>
+                            <p>Email: <a href="mailto:elena@example.com" itemprop="email">elena@example.com</a></p>
+                            <p>Телефон: <span itemprop="telephone">+987654321</span></p>
+                        </div>
                     </article>
                 </div>
             </section>

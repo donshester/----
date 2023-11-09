@@ -10,6 +10,37 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Create</button>
+    <input type="date" id="date-of-birth" name="date_of_birth" required>
+    <button type="submit">Create</button>
   </form>
+<script>
+    let typingTimer;
+    const doneTypingInterval = 1000;  // Задержка в миллисекундах (1 секунда)
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const dateOfBirthInput = document.getElementById("date-of-birth");
+
+        dateOfBirthInput.addEventListener("input", function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(checkDateOfBirth, doneTypingInterval);
+        });
+
+        function checkDateOfBirth() {
+            const selectedDate = new Date(dateOfBirthInput.value);
+            const today = new Date();
+            const age = today.getFullYear() - selectedDate.getFullYear();
+            const birthDate = new Date(selectedDate);
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const dayOfWeek = daysOfWeek[birthDate.getUTCDay()];
+
+            // Проверьте возраст и день недели
+            if (age >= 18) {
+                alert(`You are ${age} years old. The selected date of birth falls on a ${dayOfWeek}.`);
+            } else {
+                alert("You must be at least 18 years old to register.");
+            }
+        }
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px;
+        }
+
+        td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .selected-even {
+            background-color: lightgreen;
+        }
+
+        .selected-odd {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button id="transpose">Transpose</button>
+    <button id="createTable">Create Custom Table</button>
+
+    <input id="rowCount" placeholder="Number of Rows" type="number">
+    <span>Rows</span>
+    <input id="columnCount" placeholder="Number of Columns" type="number">
+    <span>Columns</span>
+
+    <button id="addRow">Add Row</button>
+    <button id="addColumn">Add Column</button>
+    <input id="maxSelection" placeholder="Max Selection" type="number">
+    <span>Max Selection</span>
+    <input id="restriction" placeholder="Restriction" type="number">
+    <span>Restriction</span>
+</div>
+<table id="table"></table>
+
+<script>
+    const table = document.getElementById('table');
+    const transposeButton = document.getElementById('transpose');
+    const addRowButton = document.getElementById('addRow');
+    const addColumnButton = document.getElementById('addColumn');
+    const maxSelectionInput = document.getElementById('maxSelection');
+    const restrictionInput = document.getElementById('restriction');
+    const createTableButton = document.getElementById('createTable');
+    let maxSelection = parseInt(maxSelectionInput.value);
+    let restriction = parseInt(restrictionInput.value);
+    let selectedCells = new Set();
+
+   function createTable(rows, columns) {
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
+
+    for (let i = 0; i < rows; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < columns; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = Math.floor(Math.random() * 10);
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+}
+
+
+    function addRow() {
+        const newRow = document.createElement('tr');
+        const columns = table.rows[0].cells.length;
+        for (let i = 0; i < columns; i++) {
+            const cell = document.createElement('td');
+            cell.textContent = Math.floor(Math.random() * 10);
+            newRow.appendChild(cell);
+        }
+        table.appendChild(newRow);
+    }
+
+    function addColumn() {
+        const rows = table.rows.length;
+        for (let i = 0; i < rows; i++) {
+            const cell = document.createElement('td');
+            cell.textContent = Math.floor(Math.random() * 10);
+            table.rows[i].appendChild(cell);
+        }
+    }
+
+    function toggleTransposed() {
+        transposeTable();
+    }
+
+    function transposeTable() {
+        const rows = table.rows;
+        const numRows = rows.length;
+        const numCols = rows[0].cells.length;
+        const transposedTable = [];
+
+        for (let j = 0; j < numCols; j++) {
+            const newRow = [];
+            for (let i = 0; i < numRows; i++) {
+                newRow.push(rows[i].cells[j].textContent);
+            }
+            transposedTable.push(newRow);
+        }
+
+        while (table.firstChild) {
+            table.removeChild(table.firstChild);
+        }
+
+        for (let i = 0; i < numCols; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < numRows; j++) {
+                const cell = document.createElement('td');
+                cell.textContent = transposedTable[i][j];
+                row.appendChild(cell);
+            }
+            table.appendChild(row);
+        }
+    }
+
+    function clearSelection() {
+        for (const cell of selectedCells) {
+            cell.classList.remove('selected-even', 'selected-odd');
+        }
+        selectedCells.clear();
+    }
+
+   function canSelect(cell) {
+        if (restriction <= 0) return true;
+
+        const rowIndex = cell.parentNode.rowIndex;
+        const cellIndex = cell.cellIndex;
+        const rows = table.rows;
+        const rowCount = rows.length;
+        const columnCount = rows[0].cells.length;
+
+        let selectedInRow = 0;
+        let selectedInColumn = 0;
+
+        for (let i = 0; i < rowCount; i++) {
+            const selectedCell = rows[i].cells[cellIndex];
+            if (selectedCells.has(selectedCell)) {
+                selectedInColumn++;
+            }
+        }
+        for (let j = 0; j < columnCount; j++) {
+            const selectedCell = rows[rowIndex].cells[j];
+            if (selectedCells.has(selectedCell)) {
+                selectedInRow++;
+            }
+        }
+
+        if (selectedInRow >= restriction || selectedInColumn >= restriction) {
+            return false;
+        }
+
+        for (const selectedCell of selectedCells) {
+            if (selectedCell !== cell) {
+                const selectedRowIndex = selectedCell.parentNode.rowIndex;
+                const selectedCellIndex = selectedCell.cellIndex;
+                const rowDiff = Math.abs(rowIndex - selectedRowIndex);
+                const columnDiff = Math.abs(cellIndex - selectedCellIndex);
+
+                if (rowDiff + columnDiff <= 1) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+   }
+
+       function handleCellClick(event) {
+        const cell = event.target;
+
+        if (!cell || cell.tagName !== 'TD') {
+            return;
+        }
+
+        if (selectedCells.has(cell)) {
+            cell.classList.remove('selected-even', 'selected-odd');
+            selectedCells.delete(cell);
+        } else {
+            if (canSelect(cell) && selectedCells.size < maxSelection) {
+                selectedCells.add(cell);
+                cell.classList.add(cell.textContent % 2 === 0 ? 'selected-even' : 'selected-odd');
+            }
+        }
+    }
+
+    transposeButton.addEventListener('click', toggleTransposed);
+    addRowButton.addEventListener('click', addRow);
+    addColumnButton.addEventListener('click', addColumn);
+    maxSelectionInput.addEventListener('change', function () {
+        maxSelection = parseInt(maxSelectionInput.value);
+        clearSelection();
+    });
+    restrictionInput.addEventListener('change', function () {
+        restriction = parseInt(restrictionInput.value);
+        clearSelection();
+    });
+
+    table.addEventListener('click', handleCellClick);
+
+    createTable(5);
+    function createCustomTable() {
+        const rowCountInput = document.getElementById('rowCount');
+        const columnCountInput = document.getElementById('columnCount');
+        const rowCount = parseInt(rowCountInput.value);
+        const columnCount = parseInt(columnCountInput.value);
+        createTable(rowCount, columnCount);
+        clearSelection();
+    }
+
+    createTableButton.addEventListener('click', createCustomTable);
+</script>
+
+</body>
+</html>

@@ -22,7 +22,7 @@ from customers.views import CreateUser, LogoutView, LoginView
 from products.views import ProductDelete, ProductDetail, ProductCreate, ProductList, ProductEdit
 from orders.views import CreateOrderView, OrderDetailView, LatestOrdersView, UpdateOrderItemPriceView, MyOrdersView
 from analyzer.views import statistics_view, order_count_graph_view
-from mainapp.views import home, about, news, article_view, vocabulary, contacts, vacancies, feedback, promo_page, news_list
+from mainapp.views import home, about, news, article_view, vocabulary, contacts, vacancies, feedback, promo_page, news_list, check_promo, js, classes, dates
 
 
 from cart.views import CartView
@@ -57,4 +57,9 @@ urlpatterns = [
                   path('vacancies', vacancies, name='vacancies'),
                   path('feedback', feedback, name='feedback'),
                   path('promo_page', promo_page, name='promo_page'),
+                  path('check_promo/', check_promo, name='check_promo'),
+                  path('js/', js, name='js'),
+                  path('classes/', classes, name='classes'),
+                  path('dates/', dates, name='dates'),
+
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

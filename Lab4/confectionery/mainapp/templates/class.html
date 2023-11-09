@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Confectionery</title>
+</head>
+<body>
+    <h1>Welcome to Our Confectionery</h1>
+    <div id="product-info">
+        <h2>Product Information</h2>
+        <div id="output"></div>
+    </div>
+
+    <button id="apply-discount">Apply Discount</button>
+
+    <script>
+      class Product {
+         constructor(name, price) {
+         this.name = name;
+          this.price = price;
+         }
+
+         setName(name) {
+          this.name = name;
+         }
+
+         setPrice(price) {
+          this.price = price;
+         }
+
+         getName() {
+          return this.name;
+        }
+
+         getPrice() {
+           return this.price;
+        }
+    }
+
+
+        class Cake extends Product {
+            constructor(name, price, flavor) {
+                super(name, price);
+                this.flavor = flavor;
+            }
+            setFlavor(flavor) {
+                this.flavor = flavor;
+            }
+            getFlavor() {
+                return this.flavor;
+            }
+        }
+
+        function withDiscount(cake, discount) {
+            const originalPrice = cake.getPrice();
+
+            cake.getPrice = function() {
+                const discountedPrice = originalPrice - discount;
+                return discountedPrice < 0 ? 0 : discountedPrice;
+            };
+            return cake;
+        }
+
+
+        const chocolateCake = new Cake("Chocolate Cake", 15, "Chocolate");
+        const vanillaCake = new Cake("Vanilla Cake", 12, "Vanilla");
+
+        const output = document.getElementById("output");
+        const applyDiscountButton = document.getElementById("apply-discount");
+
+        function showProductInfo(cake) {
+            output.innerHTML = `
+                <p>Name: ${cake.getName()}</p>
+                <p>Flavor: ${cake.getFlavor()}</p>
+                <p>Price: $${cake.getPrice()}</p>
+            `;
+        }
+
+        showProductInfo(chocolateCake);
+
+        applyDiscountButton.addEventListener("click", () => {
+            const discountedVanillaCake = withDiscount(vanillaCake, 2);
+            showProductInfo(discountedVanillaCake);
+        });
+        function Product(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        Product.prototype.getName = function() {
+            return this.name;
+        }
+
+        Product.prototype.getPrice = function() {
+            return this.price;
+        }
+
+        function Cake(name, price, flavor) {
+            Product.call(this, name, price);
+            this.flavor = flavor;
+        }
+
+        Cake.prototype = Object.create(Product.prototype);
+
+        Cake.prototype.getFlavor = function() {
+            return this.flavor;
+        }
+        Cake.prototype.setName = function(name) {
+          this.name = name;
+        };
+
+        Cake.prototype.setPrice = function(price) {
+          this.price = price;
+        };
+
+        function withDiscount(cake, discount) {
+            const originalPrice = cake.getPrice();
+
+            cake.getPrice = function() {
+                const discountedPrice = originalPrice - discount;
+                return discountedPrice < 0 ? 0 : discountedPrice;
+            };
+            return cake;
+        }
+
+        const chocolateCake2 = new Cake("Chocolate Cake", 15, "Chocolate");
+        const vanillaCake2 = new Cake("Vanilla Cake", 12, "Vanilla");
+    </script>
+</body>
+</html>
