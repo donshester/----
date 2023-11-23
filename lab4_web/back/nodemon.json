@@ -1,0 +1,8 @@
+{
+  "ext": "ts,json",
+  "watch": ["src"],
+  "ignore": ["src/**/*.spec.ts", "node_modules"],
+  "exec": "ts-node ./src/index.ts",
+  "legacy-watch": true,
+  "quiet": true
+}

@@ -11,3 +11,5 @@ Lab3/build/
 Lab3/custom_json_serializer_1234.egg-info/
 Lab3/venv/
 Lab4/venv/
+node_modules/
+dist/

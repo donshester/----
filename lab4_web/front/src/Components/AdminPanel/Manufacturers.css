@@ -1,0 +1,38 @@
+.manufacturer-management {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.manufacturer-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.manufacturer-list li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+.new-manufacturer-form {
+    margin-top: 20px;
+}
+
+.new-manufacturer-form input,
+.new-manufacturer-form button,
+.selected-manufacturer input,
+.selected-manufacturer button {
+    margin-bottom: 10px;
+}
+
+.selected-manufacturer {
+    margin-top: 20px;
+}
+
+.selected-manufacturer input,
+.selected-manufacturer label,
+.selected-manufacturer button {
+    margin-bottom: 10px;
+}

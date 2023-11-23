@@ -1,0 +1,10 @@
+.product-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Уменьшил ширину карточек и добавил отступы для горизонтального отображения */
+    grid-gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff; /* Белый фон контейнера */
+    border-radius: 10px; /* Кругловатые углы контейнера */
+    padding: 20px; /* Отступы вокруг контейнера */
+}

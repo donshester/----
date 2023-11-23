@@ -1,0 +1,36 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3498db;
+    padding: 10px;
+}
+
+.header-link {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions span {
+    margin-right: 10px;
+}
+
+.user-actions button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.user-actions .cart-icon {
+    cursor: pointer;
+    margin-right: 10px;
+}
